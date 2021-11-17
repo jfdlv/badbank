@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Bad Bank
+
+This project emulates how a withdraw and deposit works on a bank. It has a login that you need to use before you can use the `withdraw` and `deposit` features, the credentials that can be used are placed on the `All Data` tab.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
