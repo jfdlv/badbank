@@ -1,6 +1,70 @@
 # Bad Bank
 
-This project emulates how a withdraw and deposit works on a bank. It has a login that you need to use before you can use the `withdraw` and `deposit` features, the credentials that can be used are placed on the `All Data` tab.
+## On `master` branch
+
+This project emulates how a withdraw and deposit works on a bank. It has a login that you need to use before you can use the `withdraw` and `deposit` features, the credentials that can be used are placed on the `All Data` tab. All this happens on the browser so no data is persisted
+
+### To Run: 
+
+1. run `npm install`
+2. run `npm start`
+
+## On `api-connection`
+
+![Alt text](screenshot.png)
+
+We have the same project in this branch, the difference is that it's now using firebase for authentication, and making calls to an api made in express ([BadBank backend]());
+
+### To Run in development mode: 
+
+- Update your firebaseConfig.js file with your info:
+```js
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "your info goes here",
+  authDomain: "your info goes here",
+  projectId: "your info goes here",
+  storageBucket: "your info goes here",
+  messagingSenderId: "your info goes here",
+  appId: "your info goes here"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+export {app}
+```
+- start the [backend]() 
+- make sure your routes are pointing correctly  to the server you just started
+- run `npm install`
+- run `npm start`
+
+### Technology Used
+- React
+- Firebase
+- Bootsrap
+- React-bootstrap
+- lodash
+- formik
+
+### Features
+
+#### Current features:
+- Login
+- Create Account
+- Withdraw
+- Deposit
+
+#### Future features:
+- Transaction between users.
+
+### License: MIT
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

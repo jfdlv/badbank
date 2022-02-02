@@ -1,7 +1,12 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import {Store} from "../../AppState/Store";
 export default function AllData() {
-  const { state } = useContext(Store)
+  const { state, actions } = useContext(Store)
+  
+  useEffect(()=>{
+    actions.getAllUsers();
+  },[])
+
   return (
     <table className="table">
       <thead>
@@ -14,7 +19,7 @@ export default function AllData() {
       </thead>
       <tbody>
         {state.users.map(element=> {
-          return <tr>
+          return <tr key={element.email}>
           <td>{element.email}</td>
           <td>{element.name}</td>
           <td>{element.password}</td>

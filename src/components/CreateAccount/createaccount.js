@@ -3,10 +3,13 @@ import Card from '../../util/card';
 import {Store} from "../../AppState/Store";
 import { useFormik } from 'formik';
 import Error from '../../util/error';
+import { Spinner, Alert } from 'react-bootstrap';
 
 export default function CreateAccount() {
   const [show, setShow] = useState(true);
-  // const [status, setStatus]     = useState('');
+  const [showSpinner, setShowSpinner] = useState(false)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const {actions} = useContext(Store)
 
   const formik = useFormik({
@@ -17,9 +20,8 @@ export default function CreateAccount() {
     },
     onSubmit: values => {
      console.log(values);
-     actions.addUser({...values, balance: 0});
-     alert("success!")
-     setShow(false);
+     setShowSpinner(true);
+     actions.addUser({...values, balance: 0}, {setShow, setShowSpinner, setShowErrorMessage, setErrorMessage});
     },
     onReset: values => {
       setShow(true);
@@ -42,6 +44,12 @@ export default function CreateAccount() {
       bgcolor="primary"
       // status={status}
       body={show ? (  
+        <>
+        {showSpinner && (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
         <form onSubmit={formik.handleSubmit}>
           Name<br/>
           <input type="input" className="form-control" id="name" name="name" placeholder="Enter name" onChange={formik.handleChange} value={formik.values.name}/><br/>
@@ -54,6 +62,9 @@ export default function CreateAccount() {
           {formik.errors.password ? <Error message={formik.errors.password}/> : null}
           <button type="submit" className="btn btn-light" id="submitBtn" disabled={!(formik.isValid && formik.dirty)}>Create Account</button>
         </form>
+        <br />
+        {showErrorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        </>
       ):(
         <>
         <h5>Success</h5>

@@ -3,7 +3,7 @@ import {useContext} from 'react';
 import { Store } from './AppState/Store';
 import { useLocation } from 'react-router-dom'
 export default function NavBar() { 
-  const {state} = useContext(Store);
+  const {state,actions} = useContext(Store);
   const location = useLocation();
   return (
     <>
@@ -28,7 +28,12 @@ export default function NavBar() {
           </li>}
           <li className="nav-item">
             <a className={location.pathname==="/alldata/" ? "nav-link active" : "nav-link"} href="#/alldata/">AllData</a>
-          </li>          
+          </li>      
+          {state.currentUser &&
+            <li className="nav-item">
+            <a className={location.pathname==="/login/" ? "nav-link active" : "nav-link"} onClick={actions.signOut} aria-label="login-link">Logout</a>
+            </li>
+          }
         </ul>
       </div>
     </nav>
