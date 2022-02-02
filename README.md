@@ -13,7 +13,7 @@ This project emulates how a withdraw and deposit works on a bank. It has a login
 
 ![Alt text](screenshot.png)
 
-We have the same project in this branch, the difference is that it's now using firebase for authentication, and making calls to an api made in express ([BadBank backend]());
+We have the same project in this branch, the difference is that it's now using firebase for authentication, and making calls to an api made in express ([BadBank backend](https://github.com/jfdlv/badbank-backend));
 
 ### To Run in development mode: 
 
@@ -40,7 +40,7 @@ const app = initializeApp(firebaseConfig);
 
 export {app}
 ```
-- start the [backend]() 
+- start the [backend](https://github.com/jfdlv/badbank-backend) 
 - make sure your routes are pointing correctly  to the server you just started
 - run `npm install`
 - run `npm start`
